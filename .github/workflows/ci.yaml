@@ -71,7 +71,7 @@ jobs:
         git clone --depth=1 --branch=master https://github.com/eyal0/valgrind.git
         pushd valgrind
         sh autogen.sh
-        ./configure --prefix=${LOCAL_INSTALL_PATH}
+        ./configure --prefix=${LOCAL_INSTALL_PATH} --disable-gui --enable-shared
         make -j ${NUM_BUILD_JOBS}
         make install
         popd
@@ -80,7 +80,7 @@ jobs:
     - name: Configure
       run: |
         sh autogen.sh
-        ./configure CPPFLAGS_EXTRA=-Werror ${{ matrix.code_coverage }} --disable-gui
+        ./configure CPPFLAGS_EXTRA=-Werror ${{ matrix.code_coverage }}
 
     - name: Remove debug and optimization and valgrind from coverage builds
       if: matrix.code_coverage
