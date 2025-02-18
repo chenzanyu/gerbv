@@ -80,7 +80,7 @@ jobs:
     - name: Configure
       run: |
         sh autogen.sh
-        ./configure CPPFLAGS_EXTRA=-Werror ${{ matrix.code_coverage }}
+        ./configure CPPFLAGS_EXTRA=-Werror ${{ matrix.code_coverage }} --disable-gui
 
     - name: Remove debug and optimization and valgrind from coverage builds
       if: matrix.code_coverage
