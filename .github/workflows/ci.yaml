@@ -71,7 +71,7 @@ jobs:
         git clone --depth=1 --branch=master https://github.com/eyal0/valgrind.git
         pushd valgrind
         sh autogen.sh
-        ./configure --disable-schemas-compile --disable-update-desktop-database --disable-nls --disable-dxf --disable-efence --enable-shared --enable-static --disable-fast-install --prefix=${LOCAL_INSTALL_PATH}
+        ./configure --disable-schemas-compile --disable-update-desktop-database --disable-nls --disable-efence --enable-shared --enable-static --disable-fast-install --prefix=${LOCAL_INSTALL_PATH}
         make -j ${NUM_BUILD_JOBS}
         make install
         popd
@@ -80,7 +80,7 @@ jobs:
     - name: Configure
       run: |
         sh autogen.sh
-        ./configure --disable-schemas-compile --disable-update-desktop-database --disable-nls --disable-dxf --disable-efence --enable-shared --enable-static --disable-fast-install CPPFLAGS_EXTRA=-Werror ${{ matrix.code_coverage }}
+        ./configure --disable-schemas-compile --disable-update-desktop-database --disable-nls --disable-efence --enable-shared --enable-static --disable-fast-install CPPFLAGS_EXTRA=-Werror ${{ matrix.code_coverage }}
 
     - name: Remove debug and optimization and valgrind from coverage builds
       if: matrix.code_coverage
